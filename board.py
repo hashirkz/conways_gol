@@ -32,19 +32,12 @@ class board:
         except FileNotFoundError:
             return f'unable to find *{img_path}* in the current directory'
 
-    # load board.tensor from a csv
+    # load board.tensor from a csv only works for grayscale 2d 1 color channel images
     @staticmethod
-    def csv_to_board(csv_path: str, board_w: int = 200):
+    def csv_to_board(csv_path: str):
         try:
-            tensor = pd.read_csv(csv_path).to_numpy()
-
-            # aspect ratio is board_w / img_w
-            aspect_ratio = board_w / tensor.shape[1]
-            tensor = board.rgb2gray(transform.rescale(tensor, aspect_ratio, multichannel=True))
-            
-            tensor_bool = (tensor > 0.25).astype(np.int)
-
-            return tensor_bool
+            tensor = pd.read_csv(csv_path, skiprows=0, index_col=0).to_numpy()
+            return tensor
 
         except FileNotFoundError:
             return f'unable to find *{csv_path}* in the current directory'
@@ -85,9 +78,11 @@ class board:
         # key = lambda x : 0 if x == 1 and (x < 2 or x > 3) else 1
 
     # show the graph for the current board *need to use plt.ion() before using board.show(...)
-    def show(self, time: int = 0.01):
+    def show(self, time: int | None = None, save_frame: bool = False, path: str | None = None):
+        if not time: time = 0.01
         plt.imshow(self.tensor, cmap='gray')
         plt.draw()
+        if save_frame: plt.savefig(path)
         plt.pause(time)
         plt.clf()
 

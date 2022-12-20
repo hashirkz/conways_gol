@@ -1,6 +1,12 @@
 # conways game of life simulater
 
-## usage  
+## example
+![aya.png](./aya_frame.png)  
+<br>
+
+![aya.gif](./aya.gif)  
+
+### usage  
 1. in app.py within app() make a new board from an img or csv  
 ```python
 # example using img data  
