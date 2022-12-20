@@ -7,7 +7,8 @@
 ![aya.gif](./aya.gif)  
 
 ### usage  
-1. in app.py within app() make a new board from an img or csv  
+1. install requirements from terminal with `pip install -r 'requirements.txt'`  
+2. in app.py within app() make a new board from an img or csv  
 ```python
 # example using img data  
 brd = board(board.img_to_board(*path_to_img, board_w = *desired_board_width))  
@@ -20,6 +21,5 @@ while True:
     brd.show()
     brd.update()
 ```
-
-2. run the program from the terminal  
+3. run the program from the terminal  
 `python3 -u './app.py'`  
