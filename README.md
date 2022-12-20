@@ -14,7 +14,7 @@
 brd = board(board.img_to_board(*path_to_img, board_w = *desired_board_width))  
 
 # exmaple using csv data  
-brd = board(board.csv_to_board(*path_to_csv, board_w = *desired_board_width))  
+brd = board(board.csv_to_board(*path_to_csv))  
 
 # game loop u dont need to do this yourself just change the board within app.py  
 while True:  
@@ -23,3 +23,8 @@ while True:
 ```
 3. run the program from the terminal  
 `python3 -u './app.py'`  
+
+#### notes
+* only use mxn csvs i.e board.tensor.shape ~ (m, n) representing 1 color channel imgs
+* to stop the program type ctrl c in the terminal until it stops
+
